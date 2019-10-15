@@ -66,11 +66,19 @@ def save_as_images(obj, file_name='output'):
                 Images will be saved as `file_name_{image_number}.png`
     """
     img = convert_to_images(obj)
+    import cv2
+    import os
+    path = '/content/images/'
 
     for i, out in enumerate(img):
         current_file_name = file_name + '_%d.png' % i
-        logger.info("Saving image to {}".format(current_file_name))
-        out.save(current_file_name, 'png')
+        cv2.imwrite(os.path.join(path , current_file_name), img)
+        cv2.waitKey(0)
+
+        # logger.info("Saving image to {}".format(current_file_name))
+        # out.save(current_file_name, 'png')
+
+
 
 
 def display_in_terminal(obj):
