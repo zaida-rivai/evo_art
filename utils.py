@@ -65,18 +65,17 @@ def save_as_images(obj, file_name='output'):
             file_name: path and beggingin of filename to save.
                 Images will be saved as `file_name_{image_number}.png`
     """
-    img = convert_to_images(obj)
-    # import cv2
     import os
-    # path = 'images/'
+    import cv2
+    from PIL import Image
 
-    for i, out in enumerate(img):
+    img = convert_to_images(obj)
+    img_names = enumerate(img)
+
+    for i, out in img_names:
         current_file_name = file_name + '_%d.png' % i
-        logger.info("Saving image to {}".format(current_file_name))
-        out.save(current_file_name, 'png')
-
-
-
+        out.save('/content/gdrive/My Drive/Colab Notebooks/evo_art_project/pytorch-pretrained-BigGAN/pytorch_pretrained_biggan/images/'+current_file_name)
+        print("Image {} has being saved".format(current_file_name))
 
 def display_in_terminal(obj):
     """ Convert and display an output tensor from BigGAN in the terminal.

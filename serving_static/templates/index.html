@@ -1,0 +1,83 @@
+{% block title %}Guestbook{% endblock %}
+
+{% block main %}
+
+<html>
+  <head>
+    <title>Flask Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <h1>{{message}}</h1>
+    <h3>Your initial parent:</h3>
+
+    <!-- show images from iparent folder -->
+    <img src="/static/Test_0.png" width="500" height="500">
+    <h3>Choose a parent to mate with:</h3>
+
+    <!-- Show images from static folder -->
+    <!-- Parent1 -->
+    <img src="/static/Test_1.png" width="200" height="200">
+    <button name="forwardBtn" onclick="submit_message()">Pick me!</button>
+    <!-- Parent2 -->
+    <img src="/static/Test_2.png" width="200" height="200">
+    <button name="forwardBtn" onclick="submit_message()">Pick me!</button>
+    <!-- <button class="btn btn-primary" id="submit" onclick="submit_message();">Submit message</button> -->
+
+
+    <!-- Parent3 -->
+    <img src="/static/Test_3.png" width="200" height="200">
+    <button name="forwardBtn" onclick="submit_message()">Pick me!</button>
+
+    <!-- <form action="/move_forward" method="POST">
+      <input type="submit" value="Pick me!">
+    </form> -->
+  </body>
+</html>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+  function submit_message() {
+
+    // var name = document.getElementById("name");
+    // var message = document.getElementById("message");
+    //
+    // var entry = {
+    //   name: name.value,
+    //   message: message.value
+    var name = "Hallo"
+    console.log(name)
+    };
+
+    // URL it is posting to
+    fetch(`${window.origin}/index`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+      .then(function(response) {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status code: ${response.status}`);
+          return;
+      }
+      response.json().then(function(data) {
+        console.log(data);
+      });
+    })
+      .catch(function(error) {
+        console.log("Fetch error: " + error);
+      });
+
+  }
+
+</script>
+
+{% endblock %}
