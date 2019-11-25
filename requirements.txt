@@ -1,0 +1,10 @@
+Flask
+tensorflow
+tensorflow-hub
+Pillow
+nltk
+libsixel-python
+# Downgrade to TensorFlow 1.12.2
+tensorflow-gpu==1.12.2
+pytorch-pretrained-biggan
+cv2

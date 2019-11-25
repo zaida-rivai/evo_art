@@ -1,5 +1,8 @@
 from flask import Flask
 from flask import render_template, request, jsonify, make_response
+import glob
+from random import sample
+import GAN_update_25_11
 
 # creates a Flask application, named app
 app = Flask(__name__)
@@ -9,6 +12,32 @@ app = Flask(__name__)
 def hello():
     message = "Welcome"
     return render_template('index.html', message=message)
+
+@app.route('/generate')
+def generate():
+    # http://localhost:5000/generate?parent=image-abc-123.jpg
+    print(request.args.get('parent'))
+    return 'hello'
+
+@app.route('/parent-images')
+def list_parent_images():
+    images = [f for f in glob.glob("./static/*.png", recursive=True)]
+    initial = sample(images, 1)[0]
+    images.remove(initial)
+    res = {
+        'initialParent': initial,
+        'choices': sample(images, 3)
+    }
+    return jsonify(res)
+
+@app.route('/mate')
+def mate():
+    parent1 = request.args.get('parent1')
+    parent2 = request.args.get('parent2')
+
+    mating_result = GAN_update_25_11.maak_een_mooi_plaatje(parent1, parent2)
+    return jsonify(mating_result)
+
 
 # rendering the HTML page which has the button
 @app.route('/json')

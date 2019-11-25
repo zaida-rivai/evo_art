@@ -9,22 +9,22 @@ Original file is located at
 # Pretrained BIGGAN pre-process
 """
 
-!pip install tensorflow
-!pip install tensorflow-hub
-!pip install Pillow
-!pip install nltk
-!pip install libsixel-python
+# !pip install tensorflow
+# !pip install tensorflow-hub
+# !pip install Pillow
+# !pip install nltk
+# !pip install libsixel-python
 
 # Downgrade to TensorFlow 1.12.2
-!pip install --upgrade tensorflow-gpu==1.12.2
+# !pip install --upgrade tensorflow-gpu==1.12.2
 
 #Install Cuda 9.0
-!wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-!dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-!apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
-!apt-get update
-!apt-get install cuda=9.0.176-1
-!echo ****** Cuda reinstall completed. Restart runtime now! *******
+# !wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+# !dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+# !apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+# !apt-get update
+# !apt-get install cuda=9.0.176-1
+# !echo ****** Cuda reinstall completed. Restart runtime now! *******
 
 #must be 1.12.2
 import tensorflow as tf
@@ -32,7 +32,7 @@ print("Now running TensorFlow version %s on Colab!" %tf.VERSION)
 assert tf.VERSION == '1.12.2'
 
 #must be release 9
-!nvcc --version
+# !nvcc --version
 
 #NLTK downloader
 import nltk
@@ -58,7 +58,7 @@ drive.mount('/content/gdrive')
 
 """# Install pytorch pretrained biggan"""
 
-!pip install pytorch-pretrained-biggan
+# !pip install pytorch-pretrained-biggan
 
 from PIL import Image
 import numpy as np
@@ -171,6 +171,16 @@ def save_as_images(obj, file_name='output', path='images/'):
 
 print(torch.cuda.is_available())
 device = 0
+
+def maak_een_mooi_plaatje(parent1, parent):
+    """
+    Example parameters:
+
+    parent1: ./static/Test_0.png
+    parent2: ./static/Test_1.png
+    """
+
+    return { 'parent1': parent1, 'parent2': parent2 }
 
 def interpolate(lin_noise_vector, lin_class_vector, glob_idx, num):
     for i in range(num):
